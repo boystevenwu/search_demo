@@ -33,7 +33,3 @@ def build_index(ls, url):
         json.dump(freq, file)
 
     return freq
-
-
-if __name__ == "__main__":
-    print(tokenize("cristina lopez"))

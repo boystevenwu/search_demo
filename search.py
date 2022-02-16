@@ -50,10 +50,3 @@ def launch(data):
                     window[str(i)].update(list(sorted_result.keys())[i])
                 else:
                     window[str(i)].update("")
-
-
-if __name__ == "__main__":
-    with open('posting.json') as f:
-        json = json.load(f)
-
-    launch(json)
