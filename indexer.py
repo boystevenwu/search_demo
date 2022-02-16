@@ -2,12 +2,10 @@ import re
 from collections import defaultdict
 import json
 
-largest_count = 0
 freq = {}
 
 
 def tokenize(file_text):
-    global largest_count
     listt = []
     lineplus = re.sub(r'[^A-Za-z0-9]+', ' ', file_text)
     listt += lineplus.lower().split()

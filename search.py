@@ -1,4 +1,3 @@
-import json
 import indexer
 import PySimpleGUI as sg
 from collections import defaultdict
