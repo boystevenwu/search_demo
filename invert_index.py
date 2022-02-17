@@ -29,10 +29,13 @@ def get_index():
                 for item in text.find_all(['p', 'h1', 'h2', 'h3', 'b', 'strong', 'center']):
                     s += item.text
             tokens = indexer.tokenize(s)
+
             count += 1
             if not tokens:
                 print(data['url'])
-            result = indexer.build_index(tokens, data['url'])
+            indexer.build_index(tokens, data['url'])
+
+    indexer.calculate_tf_idf(indexer.freq)
 
 
 if __name__ == "__main__":

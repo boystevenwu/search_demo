@@ -19,28 +19,27 @@ def tokenize(file_text):
 def build_index(ls, url):
     global freq
 
-    # build a dictionary for all the words
+    # build a dictionary for all the words with respective tf
     for word in ls:
         if word not in freq.keys():
-            freq[word] = defaultdict(int)
+            freq[word] = dict()
 
         if url in freq[word].keys():
             freq[word][url] += 1 / len(ls)
         else:
             freq[word][url] = 1 / len(ls)
 
-    for token in freq.keys():
-        for url in freq[token]:
-            print(freq[token][url])
-            freq[token][url] = freq[token][url] * math.log(total_number_documents / len(freq[token].keys()))
-            if freq[token][url] > 3.5:
-                print()
-                print(math.log(total_number_documents / len(freq[token].keys())))
-                print(freq[token][url])
-                print()
+
+def calculate_tf_idf(tf):
+    result = dict()
+
+    for token in tf.keys():
+        for url in tf[token]:
+            result[token] = dict()
+            result[token][url] = (tf[token][url] * math.log(total_number_documents / len(tf[token].keys())))
 
     # write the result inside a json file
     with open('posting.json', 'w') as file:
-        json.dump(freq, file)
+        json.dump(result, file)
 
-    return freq
+    return result
