@@ -5,7 +5,7 @@ import json
 import math
 
 freq = {}
-total_number_documents = 27
+total_number_documents = 1988
 
 
 def tokenize(file_text):
