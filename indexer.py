@@ -34,8 +34,8 @@ def calculate_tf_idf(tf):
     result = dict()
 
     for token in tf.keys():
+        result[token] = dict()
         for url in tf[token]:
-            result[token] = dict()
             result[token][url] = (tf[token][url] * math.log(total_number_documents / len(tf[token].keys())))
 
     # write the result inside a json file
