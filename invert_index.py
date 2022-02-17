@@ -7,8 +7,8 @@ import json
 def get_index():
     count = 0
     result = dict()
-    #for folder in ['www-db_ics_uci_edu', 'www_cs_uci_edu', 'www_informatics_uci_edu']:
-    for folder in ['www-db_ics_uci_edu']:
+    for folder in ['www-db_ics_uci_edu', 'www_cs_uci_edu', 'www_informatics_uci_edu']:
+    #for folder in ['www-db_ics_uci_edu']:
         for file in [f for f in listdir(folder) if f.endswith(".json")]:
             s = str()
             # JSON file
