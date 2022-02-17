@@ -35,5 +35,5 @@ def get_index():
             result = indexer.build_index(tokens, data['url'])
 
 
-# if __name__ == "__main__":
-#     get_index()
+if __name__ == "__main__":
+    get_index()

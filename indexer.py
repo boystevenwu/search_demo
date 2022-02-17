@@ -1,10 +1,11 @@
+import math
 import re
 from collections import defaultdict
 import json
 import math
 
 freq = {}
-
+total_number_documents = 27
 
 
 def tokenize(file_text):
@@ -24,9 +25,19 @@ def build_index(ls, url):
             freq[word] = defaultdict(int)
 
         if url in freq[word].keys():
-            freq[word][url] += 1
+            freq[word][url] += 1 / len(ls)
         else:
-            freq[word][url] = 1
+            freq[word][url] = 1 / len(ls)
+
+    for token in freq.keys():
+        for url in freq[token]:
+            print(freq[token][url])
+            freq[token][url] = freq[token][url] * math.log(total_number_documents / len(freq[token].keys()))
+            if freq[token][url] > 3.5:
+                print()
+                print(math.log(total_number_documents / len(freq[token].keys())))
+                print(freq[token][url])
+                print()
 
     # write the result inside a json file
     with open('posting.json', 'w') as file:
