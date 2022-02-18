@@ -37,13 +37,13 @@ def launch(data):
                     temp_set = set(search(item, data).keys())
                     final_set = final_set & temp_set
 
-            print(final_set)
             result = defaultdict(int)
             for item in indexer.tokenize(values['INPUT']):
                 for url in final_set:
                     result[url] += search(item, data)[url]
 
             sorted_result = dict(sorted(result.items(), key=lambda x: x[1], reverse=True))
+            print(sorted_result)
             for i in range(5):
                 if i < len(list(sorted_result.keys())):
                     window[str(i)].update(list(sorted_result.keys())[i])
