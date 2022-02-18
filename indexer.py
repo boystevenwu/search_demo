@@ -7,14 +7,13 @@ import math
 freq = {}
 total_number_documents = 1988
 
-
 def tokenize(file_text):
+    # tokenize the sentence into words
     listt = []
     lineplus = re.sub(r'[^A-Za-z0-9]+', ' ', file_text)
     listt += lineplus.lower().split()
 
     return listt
-
 
 def build_index(ls, url):
     global freq
@@ -33,6 +32,7 @@ def build_index(ls, url):
 def calculate_tf_idf(tf):
     result = dict()
 
+    # update the tf-idf score by multiply the tf score above with the idf score
     for token in tf.keys():
         result[token] = dict()
         for url in tf[token]:

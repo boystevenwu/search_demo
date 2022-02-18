@@ -4,6 +4,7 @@ from collections import defaultdict
 
 
 def search(query, index):
+    # if the tokens inside the query exists in our token list, we return the result
     if query in index:
         return index[query]
     else:
@@ -11,6 +12,7 @@ def search(query, index):
 
 
 def launch(data):
+    # user interface GUI
     layout = [[sg.Input(key='INPUT', justification='left'), sg.Button('Gain')],
               [sg.Text("")],
               [sg.Input(size=(55, 1), key='0', readonly=True)],
@@ -26,6 +28,7 @@ def launch(data):
         if event == sg.WINDOW_CLOSED:
             break
 
+        # as we click the 'Gain' button, the results will come out
         if event == 'Gain':
             final_set, temp_set = set(), set()
             flag = True
@@ -38,12 +41,15 @@ def launch(data):
                     final_set = final_set & temp_set
 
             result = defaultdict(int)
+            # put all urls satisfied the required query along with their scores inside the dictionary
             for item in indexer.tokenize(values['INPUT']):
                 for url in final_set:
                     result[url] += search(item, data)[url]
 
+            # reverse ordering the dictionary based on the tf-idf score corresponding to each url for each token
             sorted_result = dict(sorted(result.items(), key=lambda x: x[1], reverse=True))
             print(sorted_result)
+            # get top 5 url for each query
             for i in range(5):
                 if i < len(list(sorted_result.keys())):
                     window[str(i)].update(list(sorted_result.keys())[i])
