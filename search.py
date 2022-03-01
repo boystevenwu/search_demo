@@ -3,6 +3,7 @@ import PySimpleGUI as sg
 from collections import defaultdict
 from nltk.stem import PorterStemmer
 
+
 def search(query, index):
     # if the tokens inside the query exists in our token list, we return the result
     if query in index:
@@ -10,7 +11,9 @@ def search(query, index):
     else:
         return {}
 
+
 ps = PorterStemmer()
+
 
 def launch(data):
     # user interface GUI
@@ -38,7 +41,6 @@ def launch(data):
                 ls_stem.append(ps.stem(item))
             print('ls_stem:', ls_stem)
             flag = True
-            #for item in indexer.tokenize(values['INPUT']):
             for item in ls_stem:
                 if flag:
                     final_set = set(search(item, data).keys())
@@ -49,7 +51,6 @@ def launch(data):
 
             result = defaultdict(int)
             # put all urls satisfied the required query along with their scores inside the dictionary
-            #for item in indexer.tokenize(values['INPUT']):
             for item in ls_stem:
                 for url in final_set:
                     result[url] += search(item, data)[url]
@@ -57,6 +58,7 @@ def launch(data):
             # reverse ordering the dictionary based on the tf-idf score corresponding to each url for each token
             sorted_result = dict(sorted(result.items(), key=lambda x: x[1], reverse=True))
             print(sorted_result)
+
             # get top 5 url for each query
             for i in range(5):
                 if i < len(list(sorted_result.keys())):
