@@ -23,15 +23,30 @@ def tokenize(file_text):
 def build_index(ls, url):
     global freq
 
+    # stop_words list that will have lower weights
+    op = open('./stopword.txt', "r", encoding="utf-8")
+
+    stop_words = set()
+    for a in op:
+        lineplus = re.sub(r'[^A-Za-z0-9]+', ' ', a)
+        for item in lineplus.lower().split():
+            stop_words.add(ps.stem(item))
+
     # build a dictionary for all the words with respective tf
     for word in ls:
         if word not in freq.keys():
             freq[word] = dict()
 
-        if url in freq[word].keys():
-            freq[word][url] += 1 / len(ls)
+        if word in stop_words:
+            if url in freq[word].keys():
+                freq[word][url] += 0.05 / len(ls)
+            else:
+                freq[word][url] = 0.05 / len(ls)
         else:
-            freq[word][url] = 1 / len(ls)
+            if url in freq[word].keys():
+                freq[word][url] += 1 / len(ls)
+            else:
+                freq[word][url] = 1 / len(ls)
 
 
 def calculate_tf_idf(tf):
