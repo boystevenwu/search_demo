@@ -1,7 +1,7 @@
 import indexer
 import PySimpleGUI as sg
 from collections import defaultdict
-
+from nltk.stem import PorterStemmer
 
 def search(query, index):
     # if the tokens inside the query exists in our token list, we return the result
@@ -10,6 +10,7 @@ def search(query, index):
     else:
         return {}
 
+ps = PorterStemmer()
 
 def launch(data):
     # user interface GUI
@@ -31,8 +32,14 @@ def launch(data):
         # as we click the 'Gain' button, the results will come out
         if event == 'Gain':
             final_set, temp_set = set(), set()
+            ls_token = indexer.tokenize(values['INPUT'])
+            ls_stem = []
+            for item in ls_token:
+                ls_stem.append(ps.stem(item))
+            print('ls_stem:', ls_stem)
             flag = True
-            for item in indexer.tokenize(values['INPUT']):
+            #for item in indexer.tokenize(values['INPUT']):
+            for item in ls_stem:
                 if flag:
                     final_set = set(search(item, data).keys())
                     flag = False
@@ -42,7 +49,8 @@ def launch(data):
 
             result = defaultdict(int)
             # put all urls satisfied the required query along with their scores inside the dictionary
-            for item in indexer.tokenize(values['INPUT']):
+            #for item in indexer.tokenize(values['INPUT']):
+            for item in ls_stem:
                 for url in final_set:
                     result[url] += search(item, data)[url]
 
