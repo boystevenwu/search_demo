@@ -14,12 +14,8 @@ def tokenize(file_text):
     # tokenize the sentence into words
     listt = []
     lineplus = re.sub(r'[^A-Za-z0-9]+', ' ', file_text)
-    #print('tokenize:', lineplus.lower().split())
     for item in lineplus.lower().split():
-        #print('stem_item:', ps.stem(item))
         listt.append(ps.stem(item))
-    #listt += lineplus.lower().split()
-        #print('listt:', listt)
     return listt
 
 def build_index(ls, url):
@@ -46,7 +42,7 @@ def calculate_tf_idf(tf):
             result[token][url] = (tf[token][url] * math.log(total_number_documents / len(tf[token].keys())))
 
     # write the result inside a json file
-    with open('posting_test.json', 'w') as file:
+    with open('posting.json', 'w') as file:
         json.dump(result, file)
 
     return result
