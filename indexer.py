@@ -10,6 +10,7 @@ total_number_documents = 1212
 
 ps = PorterStemmer()
 
+
 def tokenize(file_text):
     # tokenize the sentence into words
     listt = []
@@ -17,6 +18,7 @@ def tokenize(file_text):
     for item in lineplus.lower().split():
         listt.append(ps.stem(item))
     return listt
+
 
 def build_index(ls, url):
     global freq
