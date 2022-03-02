@@ -6,7 +6,7 @@ import math
 from nltk.stem import PorterStemmer
 
 freq = {}
-total_number_documents = 1212
+total_number_documents = 1127
 
 ps = PorterStemmer()
 
