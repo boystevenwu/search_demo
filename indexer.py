@@ -7,7 +7,6 @@ from nltk.stem import PorterStemmer
 
 freq = {}
 total_number_documents = 1127
-
 ps = PorterStemmer()
 
 
@@ -15,6 +14,7 @@ def tokenize(file_text):
     # tokenize the sentence into words
     listt = []
     lineplus = re.sub(r'[^A-Za-z0-9]+', ' ', file_text)
+    # stemming every word for similar words
     for item in lineplus.lower().split():
         listt.append(ps.stem(item))
     return listt
@@ -23,9 +23,8 @@ def tokenize(file_text):
 def build_index(ls, url):
     global freq
 
-    # stop_words list that will have lower weights
+    # stop_words list that will be counted with lower weights
     op = open('./stopword.txt', "r", encoding="utf-8")
-
     stop_words = set()
     for a in op:
         lineplus = re.sub(r'[^A-Za-z0-9]+', ' ', a)
@@ -37,6 +36,7 @@ def build_index(ls, url):
         if word not in freq.keys():
             freq[word] = dict()
 
+        # if the word in the query is a stop word, then we will regard it as 1/20 regular word.
         if word in stop_words:
             if url in freq[word].keys():
                 freq[word][url] += 0.05 / len(ls)

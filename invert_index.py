@@ -28,6 +28,8 @@ def get_index():
             s = str()
             for content in [title, text_3, text_2, text_1]:
                 if content is not None:
+                    # if the content is a header or a highlighted word, we will count it three times
+                    # to emphasize its importance.
                     for item in content.find_all(['h1', 'h2', 'h3', 'strong']):
                         s += item.text * 3
                     for item in content.find_all(['p', 'b', 'center']):

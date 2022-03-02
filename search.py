@@ -37,6 +37,7 @@ def launch(data):
             final_set, temp_set = set(), set()
             ls_token = indexer.tokenize(values['INPUT'])
             ls_stem = []
+            # stemming for all the words in the queries
             for item in ls_token:
                 ls_stem.append(ps.stem(item))
             print('ls_stem:', ls_stem)
