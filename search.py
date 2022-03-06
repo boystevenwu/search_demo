@@ -41,7 +41,7 @@ def launch(data):
             # stemming for all the words in the queries
             for item in ls_token:
                 ls_stem.append(ps.stem(item))
-            print('ls_stem:', ls_stem)
+            print('tokens:', ls_stem)
             flag = True
             for item in ls_stem:
                 if flag:

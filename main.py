@@ -7,4 +7,6 @@ if __name__ == "__main__":
     with open('posting.json') as f:
         json = json.load(f)
 
+    # lunch the web interface of search engine
+    print("Please visit http://127.0.0.1:2222/")
     search.launch(json)
