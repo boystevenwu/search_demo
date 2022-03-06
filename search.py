@@ -1,5 +1,5 @@
 import indexer
-import PySimpleGUI as sg
+import PySimpleGUIWeb as sg
 from collections import defaultdict
 from nltk.stem import PorterStemmer
 
@@ -17,15 +17,16 @@ ps = PorterStemmer()
 
 def launch(data):
     # user interface GUI
-    layout = [[sg.Input(key='INPUT', justification='left'), sg.Button('Gain')],
+    layout = [[sg.Text("An Answer Gained")],
+              [sg.Input(size=(45, 1), key='INPUT'), sg.Button(size=(5, 1), button_text='Gain')],
               [sg.Text("")],
-              [sg.Input(size=(55, 1), key='0', readonly=True)],
-              [sg.Input(size=(55, 1), key='1', readonly=True)],
-              [sg.Input(size=(55, 1), key='2', readonly=True)],
-              [sg.Input(size=(55, 1), key='3', readonly=True)],
-              [sg.Input(size=(55, 1), key='4', readonly=True)]]
+              [sg.Input(size=(55, 1), key='0')],
+              [sg.Input(size=(55, 1), key='1')],
+              [sg.Input(size=(55, 1), key='2')],
+              [sg.Input(size=(55, 1), key='3')],
+              [sg.Input(size=(55, 1), key='4')]]
 
-    window = sg.Window('An Answer Gained', layout)
+    window = sg.Window('An Answer Gained', layout, element_justification='c', web_port=2222, web_start_browser=False)
 
     while True:
         event, values = window.read()
