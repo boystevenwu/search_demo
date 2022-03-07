@@ -1,0 +1,29 @@
+TEST.txt
+
+Milestone 3 Report
+
+Student Name: Qian He (17337823), Steven Wu (10791134)
+Version: Analyst
+
+Doing well:
+
+Machine learning
+ACM
+computer science
+cristina lopes
+web crawler
+Richard Taylor
+
+
+Doing poorly:
+
+Master of software engineering – did this one poorly because of the stop-word “of”. For the top websites, there are 10 times ‘of’ then the other words that appeared. Since we didn’t give less weights to stop-words in the first place, the top results simply depend on how many times ‘of’ appears instead of the real important word like ‘master’, ‘software’, and ‘engineering’.
+
+To be or not to be – since after we decided to distinguish the effects between stop-words and non-stop-words, we put 0 weights on stop-words. However, it turns out that this query will return 0 results. So, we decide to put less weights on stop-words instead of non-weights at all.
+
+Computers Science – should have more related results, but didn’t because the websites we have usually use the word “computer science” without an extra ‘s’. So, we added stemming to make ‘computer’ and ‘computers’ to be treated as the same word.
+
+Fishes – since the plural for a fish is still ‘fish’, but some people might mistakenly write it as ‘fishes’. So, we added stemming to make ‘fish and ‘fishes to be treated as the same word.
+
+Learn – since before when we search ‘learn’, it doesn’t show any other related words such as ‘learning’. However, they represent the same thing. So, we added stemming to make ‘learn’ and ‘learning’ to be treated as the same word.
+
