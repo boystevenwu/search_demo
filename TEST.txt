@@ -30,25 +30,25 @@ However, it will bring another issue when the query contains only the stopwords:
   To be or not to be – since after we decided to distinguish the effects between stop-words and non-stop-words, we put 0 weights on stop-words. However, it turns out that this query will return 0 results. In the final design, we put fewer weights on stop-words instead of non-weights at all.
 
 In the next step, we tried to generalize queries from typos and conjugations. 
-We didn't find a very efficient way to correct user typos, so we decided to leave them as is. 
-In the case when users typed an incorrect word, they will likely not seeing good results:
+We didn't find a very efficient way to correct user typos, so we decided to leave them as-is. 
+In the case when users typed an incorrect word, they will likely not see good results:
   Acheive (Achieve) - No result.
 
 As for conjugations, we used an external library for stemming the terms:
   Computers Science – should have more related results, but didn’t because the websites we have usually use the word “computer science” without an extra ‘s’.  Stemming makes ‘computer’ and ‘computers’ to be treated as the same word.
 
-  Fishes – since the plural for fish is still ‘fish’, but some people might mistakenly write it as ‘fishes’. Stemming to make ‘fish and ‘fishes to be treated as the same word.
+  Fishes – since the plural for fish is still ‘fish’, but some people might mistakenly write it as ‘fishes’. Stemming to make ‘fish and ‘fish to be treated as the same word.
 
   Learn – since before when we search ‘learn’, it doesn’t show any other related words such as ‘learning’. However, they represent the same thing. So, we added stemming to make ‘learn’ and ‘learning’ be treated as the same word.
 
 We also noticed that stemming can help reduce possible typoes but only searching for their stem portion:
-  Professer (Professor) - will be stemmed to profess therefore, the typo wont affect the search results.
+  Professer (Professor) - will be stemmed to profess therefore, the typo won't affect the search results.
   
 Con: Sometimes stemming would affect the real meaning of the query term:
-  ICS - stemmed to 'ic' whose the meaning is completely altered and can lead to confusion.
+  ICS - stemmed to 'ic' whose meaning is completely altered and can lead to confusion.
 
-However, there are still issues that are unresolved. For queries that are too short, the results often come with low relavence.
-  UCI - should have lead to the overview page of the school but instead leads to some news page or other unrelated information.
+There are still issues that are unresolved. For queries that are too short, the results often come with low relevance.
+  UCI - should have led to the overview page of the school but instead leads to some news page or other unrelated information.
   
   Informatics - lead to pages with low information value as informatics is a major name so student profile pages became the first in the rank.
   
