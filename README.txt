@@ -8,6 +8,7 @@ Version: Analyst
 
 Step1: how to run the code that creates the index
 
+Unzip analyst.zip and place its three directories under the same location as all the python files.
 Run “invert_index.py” to call the main function to run the code that creates the posting (index).  “invert_index.py” will collect all the existing contents inside all the files such as headers, body, etc. 
 
 Next, it will call “index.py” for tokenizing the text, dealing with the stop word and stem similar words of the token list. Then, it will create a dictionary to index the tokens, URLs along with their tf-idf scores. 
