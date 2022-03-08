@@ -40,6 +40,8 @@ As for conjugations, we used an external library for stemming the terms:
   Fishes – since the plural for fish is still ‘fish’, but some people might mistakenly write it as ‘fishes’. Stemming to make ‘fish and ‘fish to be treated as the same word.
 
   Learn – since before when we search ‘learn’, it doesn’t show any other related words such as ‘learning’. However, they represent the same thing. So, we added stemming to make ‘learn’ and ‘learning’ be treated as the same word.
+  
+  Artificial Intelligence -- It only shows the results with the extra word 'intelligence', but didn't show other very related words like 'intelligent'. So, we added stemming to make ‘Intelligence’ and ‘Intelligent’ be treated as the same word.
 
 We also noticed that stemming can help reduce possible typoes but only searching for their stem portion:
   Professer (Professor) - will be stemmed to profess therefore, the typo won't affect the search results.
