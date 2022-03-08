@@ -2,6 +2,7 @@ import indexer
 import PySimpleGUIWeb as sg
 from collections import defaultdict
 from nltk.stem import PorterStemmer
+import timeit
 
 
 def search(query, index):
@@ -28,6 +29,8 @@ def launch(data):
 
     window = sg.Window('An Answer Gained', layout, element_justification='c', web_port=2222, web_start_browser=False)
 
+    print("Please visit http://127.0.0.1:2222/")
+
     while True:
         event, values = window.read()
         if event == sg.WINDOW_CLOSED:
@@ -35,13 +38,15 @@ def launch(data):
 
         # as we click the 'Gain' button, the results will come out
         if event == 'Gain':
+            start = timeit.default_timer()
             final_set, temp_set = set(), set()
             ls_token = indexer.tokenize(values['INPUT'])
             ls_stem = []
+
             # stemming for all the words in the queries
             for item in ls_token:
                 ls_stem.append(ps.stem(item))
-            print('tokens:', ls_stem)
+            print('Tokens:', ls_stem, end=' ')
             flag = True
             for item in ls_stem:
                 if flag:
@@ -67,3 +72,7 @@ def launch(data):
                     window[str(i)].update(list(sorted_result.keys())[i])
                 else:
                     window[str(i)].update("")
+
+            # calculate query execution time
+            stop = timeit.default_timer()
+            print('Time: ', stop - start, '\n')

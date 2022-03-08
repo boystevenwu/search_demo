@@ -8,5 +8,4 @@ if __name__ == "__main__":
         json = json.load(f)
 
     # lunch the web interface of search engine
-    print("Please visit http://127.0.0.1:2222/")
     search.launch(json)
