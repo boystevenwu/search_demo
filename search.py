@@ -40,15 +40,12 @@ def launch(data):
         if event == 'Gain':
             start = timeit.default_timer()
             final_set, temp_set = set(), set()
-            ls_token = indexer.tokenize(values['INPUT'])
-            ls_stem = []
 
             # stemming for all the words in the queries
-            for item in ls_token:
-                ls_stem.append(ps.stem(item))
-            print('Tokens:', ls_stem, end=' ')
+            ls_token = indexer.tokenize(values['INPUT'])
+            print('Tokens:', ls_token, end=' ')
             flag = True
-            for item in ls_stem:
+            for item in ls_token:
                 if flag:
                     final_set = set(search(item, data).keys())
                     flag = False
@@ -58,7 +55,7 @@ def launch(data):
 
             result = defaultdict(int)
             # put all urls satisfied the required query along with their scores inside the dictionary
-            for item in ls_stem:
+            for item in ls_token:
                 for url in final_set:
                     result[url] += search(item, data)[url]
 
