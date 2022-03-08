@@ -25,6 +25,8 @@ Improvements:
 
 We firstly found that stopwords can impact the query result due to their high appearances: 
   Master of software engineering – because we didn’t give fewer weights to stopwords in the first place, the top results simply depend on how many times ‘of’   appears instead of the really important word like ‘master’, ‘software’, and ‘engineering’. We then decided to import a list of stopwords and eliminate them from tokenization when indexing.
+  
+  Information and Computer Science - and is a common name in English. Without lowering its weight, the search results will be imfluenced. The results became much better after we added different weights for stopwords.
 
 However, it will bring another issue when the query contains only the stopwords:
   To be or not to be – since after we decided to distinguish the effects between stop-words and non-stop-words, we put 0 weights on stop-words. However, it turns out that this query will return 0 results. In the final design, we put fewer weights on stop-words instead of non-weights at all.
@@ -40,6 +42,8 @@ As for conjugations, we used an external library for stemming the terms:
   Fishes – since the plural for fish is still ‘fish’, but some people might mistakenly write it as ‘fishes’. Stemming to make ‘fish and ‘fish to be treated as the same word.
 
   Learn – since before when we search ‘learn’, it doesn’t show any other related words such as ‘learning’. However, they represent the same thing. So, we added stemming to make ‘learn’ and ‘learning’ be treated as the same word.
+  
+  Artificial Intelligence -- It only shows the results with the extra word 'intelligence', but didn't show other very related words like 'intelligent'. So, we added stemming to make ‘Intelligence’ and ‘Intelligent’ be treated as the same word.
 
 We also noticed that stemming can help reduce possible typoes but only searching for their stem portion:
   Professer (Professor) - will be stemmed to profess therefore, the typo won't affect the search results.
