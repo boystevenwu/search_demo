@@ -19,6 +19,8 @@ Example Queries:
   information retrieval
   computer science students
   graduate programs
+  hackathon
+  HackUCI
 
 
 Improvements:
